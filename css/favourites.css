@@ -1,7 +1,7 @@
 :root {
     height: 100vh;
     background-image: url("../assets/star-transparent.png"),
-      linear-gradient(90deg, rgba(12, 22, 77, 1) 0%, rgba(25, 11, 34, 1) 100%);
+      linear-gradient(90deg, rgb(12, 64, 77) 0%, rgba(25, 11, 34, 0.842) 100%);
     background-position: center;
   }
 
