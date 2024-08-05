@@ -43,7 +43,11 @@ Here you get to choose your own design, but the theme should be in the same univ
 
 **Base URL**
 ```
+<<<<<<< HEAD
 https://fathomless-shelf-54969.herokuapp.com/
+=======
+https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/
+>>>>>>> cf8421243593198aef2b80a3ba1f18e6ee6050bd
 ```
 
 **Methods**
@@ -61,7 +65,11 @@ To obtain read permissions, you must include the header ```x-zocom``` with a val
 Ex. 
 
 ```js
+<<<<<<< HEAD
 let resp = await fetch('https://solaris.zocom.workers.dev/bodies', {
+=======
+let resp = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies', {
+>>>>>>> cf8421243593198aef2b80a3ba1f18e6ee6050bd
     method: 'GET',
     headers: {'x-zocom', '<solaris-key-here>'}
 })
@@ -149,4 +157,8 @@ Anton
 Anna,
 Tatiana,
 Michael,
+<<<<<<< HEAD
 Louise
+=======
+Louise
+>>>>>>> cf8421243593198aef2b80a3ba1f18e6ee6050bd
