@@ -26,7 +26,6 @@ header {
 }
 
 nav {
-<<<<<<< HEAD
     display: flex;
     justify-content: center;
     gap: 2.5rem;
@@ -106,11 +105,6 @@ section {
     height: 3rem;
     background-color: RGB(122, 145, 167);
 }
-=======
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
 
 .sun {
   border-radius: 100%;
@@ -158,4 +152,3 @@ section {
   background-color: RGB(239, 95, 95);
   align-self: center;
 }
->>>>>>> 7029ff93c3fc914a344e1ea2745bf347b852e703
