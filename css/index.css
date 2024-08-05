@@ -31,49 +31,100 @@ nav {
   gap: 2rem;
 }
 
+.sun,
+.planet1,
+.planet2,
+.planet3,
+.planet4,
+.planet5,
+.planet6,
+.planet7,
+.planet8 {
+  position: relative;
+  border-radius: 100%;
+}
+
 .sun {
   border-radius: 100%;
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   background-color: rgb(255, 208, 41);
 }
 
 .planet1 {
   border-radius: 100%;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem; /* Mercury */
+  height: 1rem;
   background-color: RGB(140, 139, 133);
-  align-self: center;
 }
 
 .planet2 {
   border-radius: 100%;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem; /* Venus */
+  height: 1.5rem;
   background-color: RGB(231, 204, 203);
-  align-self: center;
 }
 
 .planet3 {
   border-radius: 100%;
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem; /* Earth */
+  height: 2.5rem;
   background-color: RGB(65, 142, 213);
-  align-self: center;
 }
 
 .planet4 {
   border-radius: 100%;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.5rem; /* Mars */
+  height: 1.5rem;
   background-color: RGB(239, 95, 95);
-  align-self: center;
 }
 
-.planet4 {
+.planet5 {
   border-radius: 100%;
-  width: 2.5rem;
-  height: 2.5rem;
-  background-color: RGB(239, 95, 95);
-  align-self: center;
+  width: 6rem; /* Jupiter */
+  height: 6rem;
+  background-color: RGB(226, 148, 104);
+}
+
+.planet6 {
+  border-radius: 100%;
+  width: 4.5rem; /* Saturn */
+  height: 4.5rem;
+  background-color: RGB(199, 170, 114);
+  position: relative;
+}
+
+.planet7 {
+  border-radius: 100%;
+  width: 3rem; /* Uranus */
+  height: 3rem;
+  background-color: RGB(201, 212, 241);
+}
+
+.planet8 {
+  border-radius: 100%;
+  width: 3rem; /* Neptune */
+  height: 3rem;
+  background-color: RGB(122, 145, 167);
+}
+
+.planet-name {
+  position: absolute;
+  top: -2rem;
+  background-color: rgba(63, 8, 243, 0.962);
+  color: white;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.sun:hover .planet-name,
+.planet1:hover .planet-name,
+.planet2:hover .planet-name,
+.planet3:hover .planet-name,
+.planet4:hover .planet-name,
+.planet5:hover .planet-name,
+.planet6:hover .planet-name,
+.planet7:hover .planet-name,
+.planet8:hover .planet-name {
+  display: block;
 }
