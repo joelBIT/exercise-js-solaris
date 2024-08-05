@@ -1,0 +1,10 @@
+header {
+    padding: 5rem;
+}
+
+.sun {
+    border-radius: 100%;
+    width: 20rem;
+    height: 20rem;
+    background-color: rgb(255, 208, 41);
+}
