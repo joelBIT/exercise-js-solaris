@@ -13,6 +13,7 @@ body {
 
 header {
     text-align: center;
+    margin-bottom: 3rem;
 
     h1 {
         font-size: 5rem;
@@ -70,6 +71,20 @@ main {
                 align-self: center;
             }
 
+            figure {
+                margin: 0;
+                grid-column: span 4;
+                background-size: cover;
+                background-position: center;
+                text-align: center;
+                max-width: 20rem;
+
+                img {
+                    width: 100%;
+                    aspect-ratio: 1;
+                }
+            }
+
             .trash {
                 display: flex;
                 align-items: center;
@@ -94,4 +109,8 @@ main {
             }
         }
     }
+}
+
+footer {
+    height: 4rem;
 }

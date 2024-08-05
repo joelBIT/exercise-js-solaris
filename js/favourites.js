@@ -59,6 +59,14 @@ function createPlanetCard(planet) {
     name.appendChild(document.createTextNode(planet.name));
     card.appendChild(name);
 
+    let planetFigure = document.createElement('figure');
+    let planetImage = document.createElement('img');
+    console.log(planet.name);
+    planetImage.setAttribute('src', `/assets/${planet.name}.jpg`);
+    planetImage.setAttribute('alt', `${planet.name}`);
+    planetFigure.appendChild(planetImage);
+    card.append(planetFigure);
+
     let div = document.createElement("div");
     div.classList.add('trash');
     let latinName = document.createElement("h2");
