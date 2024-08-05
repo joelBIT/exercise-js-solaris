@@ -3,8 +3,8 @@
 const cards = document.querySelector('.cards');
 
 window.onload = () => {
-    getAPIKey();            // Only used in testing
-    //displayFavourites();  // Used later when the application is more finished
+    //getAPIKey();            // Only used in testing
+    displayFavourites();  // Used later when the application is more finished
 }
 
 /**
@@ -70,6 +70,7 @@ function createPlanetCard(planet) {
 
     navigatediv.addEventListener('click', (event) => {
         event.stopPropagation();
+        localStorage.setItem('activePlanetId', planet.id);
         window.location.assign("/singlePlanet.html");
     });
 
