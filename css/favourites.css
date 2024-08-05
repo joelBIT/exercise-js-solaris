@@ -68,7 +68,8 @@ main {
             background-color: white;
 
             h1 {
-                align-self: center;
+                width: 100%;
+                text-align: center;
             }
 
             figure {
@@ -104,6 +105,11 @@ main {
             }
 
             .trash-icon:hover {
+                cursor: pointer;
+            }
+
+            .navigate:hover {
+                opacity: 0.6;
                 cursor: pointer;
             }
         }

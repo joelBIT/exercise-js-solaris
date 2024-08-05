@@ -65,17 +65,26 @@ function createPlanetCard(planet) {
     let card = document.createElement('article');
     card.classList.add('card');
     card.classList.add(planet.name);
+    let navigatediv = document.createElement("div");
+    navigatediv.classList.add('navigate');
+
+    navigatediv.addEventListener('click', (event) => {
+        event.stopPropagation();
+        window.location.assign("/singlePlanet.html");
+    });
 
     let name = document.createElement("h1");
     name.appendChild(document.createTextNode(planet.name));
-    card.appendChild(name);
+    navigatediv.appendChild(name);
 
     let planetFigure = document.createElement('figure');
     let planetImage = document.createElement('img');
     planetImage.setAttribute('src', `/assets/${planet.name}.jpg`);
     planetImage.setAttribute('alt', `${planet.name}`);
     planetFigure.appendChild(planetImage);
-    card.append(planetFigure);
+    navigatediv.append(planetFigure);
+
+    card.appendChild(navigatediv);
 
     let div = document.createElement("div");
     div.classList.add('trash');
@@ -85,7 +94,8 @@ function createPlanetCard(planet) {
 
     let figure = document.createElement('figure');
     figure.classList.add('trash-icon');
-    figure.addEventListener('click', () => {
+    figure.addEventListener('click', (event) => {
+        event.stopPropagation();
         removeFavourite(planet.name);
     });
 
