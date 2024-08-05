@@ -1,5 +1,11 @@
 'use strict';
 
+const cards = document.querySelector('.cards');
+
+window.onload = () => {
+    getAPIKey();
+}
+
 async function getAPIKey() {
     try {
         let keyResponse = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', {
@@ -14,14 +20,7 @@ async function getAPIKey() {
         })
 
         const planets = await resp.json();
-        console.log(planets.bodies);
-        const favourites = [];
-        for (let i = 0; i < planets.bodies.length; i++) {
-            if (planets.bodies[i].type === 'planet') {
-                favourites.push(planets.bodies[i]);
-            }
-        }
-        localStorage.setItem('favourites', JSON.stringify(favourites));
+        addPlanetsToFavourites(planets.bodies);
         displayFavourites();
 
     } catch (error) {
@@ -29,14 +28,37 @@ async function getAPIKey() {
     }
 }
 
+function addPlanetsToFavourites(planets) {
+    const favourites = [];
+        for (let i = 0; i < planets.length; i++) {
+            if (planets[i].type === 'planet') {
+                favourites.push(planets[i]);
+            }
+        }
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+}
+
 function displayFavourites() {
-    console.log(localStorage.getItem('favourites'));
-    console.log(JSON.parse(localStorage.getItem('favourites')));
+    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    for (let i = 0; i < favourites.length; i++) {
+        createPlanetCard(favourites[i]);
+    }
+}
+
+function createPlanetCard(planet) {
+    let card = document.createElement('article');
+    card.classList.add('card');
+
+    let name = document.createElement("h1");
+    name.appendChild(document.createTextNode(planet.name));
+    card.appendChild(name);
+    let latinName = document.createElement("h2");
+    latinName.appendChild(document.createTextNode(planet.latinName));
+    card.appendChild(latinName);
+
+    cards.appendChild(card);
 }
 
 function removeFavourite() {
 
 }
-
-
-getAPIKey();
