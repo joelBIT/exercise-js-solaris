@@ -1,10 +1,15 @@
 'use strict';
 
 const cards = document.querySelector('.cards');
+const backArrow = document.querySelector('.long-arrow-left');
 
 window.onload = () => {
     getAPIKey();
 }
+
+backArrow.addEventListener('click', () => {
+    console.log('Navigate back to main page');
+});
 
 async function getAPIKey() {
     try {
