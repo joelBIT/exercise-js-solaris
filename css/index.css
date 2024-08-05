@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 header {
     padding: 5rem;
 }
@@ -8,7 +8,8 @@ header {
     width: 20rem;
     height: 20rem;
     background-color: rgb(255, 208, 41);
-=======
+}
+
 body {
   background: linear-gradient(90deg, rgba(12, 22, 77, 1) 0%, rgba(25, 11, 34, 1) 100%);
 }
@@ -33,5 +34,4 @@ main p {
   font-size: 1.2em;
   line-height: 1.6;
   color: #494b2c;
->>>>>>> 7d551dead5307e6069f5c23f130cac1821a759db
 }
