@@ -128,42 +128,42 @@ section {
 
 .planet1 {
   border-radius: 100%;
-  width: 1rem; /* Mercury */
+  width: 1rem;
   height: 1rem;
   background-color: RGB(140, 139, 133);
 }
 
 .planet2 {
   border-radius: 100%;
-  width: 1.5rem; /* Venus */
+  width: 1.5rem;
   height: 1.5rem;
   background-color: RGB(231, 204, 203);
 }
 
 .planet3 {
   border-radius: 100%;
-  width: 2.5rem; /* Earth */
+  width: 2.5rem;
   height: 2.5rem;
   background-color: RGB(65, 142, 213);
 }
 
 .planet4 {
   border-radius: 100%;
-  width: 1.5rem; /* Mars */
+  width: 1.5rem;
   height: 1.5rem;
   background-color: RGB(239, 95, 95);
 }
 
 .planet5 {
   border-radius: 100%;
-  width: 6rem; /* Jupiter */
+  width: 6rem; 
   height: 6rem;
   background-color: RGB(226, 148, 104);
 }
 
 .planet6 {
   border-radius: 100%;
-  width: 4.5rem; /* Saturn */
+  width: 4.5rem; 
   height: 4.5rem;
   background-color: RGB(199, 170, 114);
   position: relative;
@@ -171,14 +171,14 @@ section {
 
 .planet7 {
   border-radius: 100%;
-  width: 3rem; /* Uranus */
+  width: 3rem; 
   height: 3rem;
   background-color: RGB(201, 212, 241);
 }
 
 .planet8 {
   border-radius: 100%;
-  width: 3rem; /* Neptune */
+  width: 3rem; 
   height: 3rem;
   background-color: RGB(122, 145, 167);
 }
