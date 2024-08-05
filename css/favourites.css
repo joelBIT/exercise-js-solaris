@@ -1,7 +1,51 @@
+:root {
+    height: 100vh;
+    background-image: url("../assets/star-transparent.png"),
+      linear-gradient(90deg, rgb(12, 64, 77) 0%, rgba(25, 11, 34, 0.842) 100%);
+    background-position: center;
+  }
+
 body {
     height: 100vh;
     margin: 0;
     display: grid;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+        font-size: 5rem;
+    }
+
+    .long-arrow-left {
+        display: block;
+        margin: 30px auto;
+        width: 25px;
+        height: 25px;
+        border-top: 2px solid #000;
+        border-left: 2px solid #000;
+    }
+
+    .long-arrow-left{
+        transform: rotate(-45deg);
+    }
+
+    .long-arrow-left::after {
+        content: "";
+        display: block;
+        width: 2px;
+        height: 45px;
+        background-color: black;
+        transform: rotate(-45deg) translate(15px, 4px);
+        left: 0;
+        top: 0;
+    }
+
+    .long-arrow-left:hover {
+        cursor: pointer;
+    }
 }
 
 main {
@@ -21,11 +65,52 @@ main {
             flex-direction: column;
             justify-content: space-between;
             margin: 0;
+            background-color: white;
 
-            h3 {
+            h1 {
                 align-self: center;
-                margin: 1rem;
+            }
+
+            figure {
+                margin: 0;
+                grid-column: span 4;
+                background-size: cover;
+                background-position: center;
+                text-align: center;
+                max-width: 20rem;
+
+                img {
+                    width: 100%;
+                    aspect-ratio: 1;
+                }
+            }
+
+            .trash {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-left: 1rem;
+            }
+
+            .trash-icon {
+                display: block;
+                grid-column-start: 4;
+                justify-self: flex-end;
+                margin-right: 1rem;
+
+                img {
+                    width: fit-content;
+                    padding: 0;
+                }
+            }
+
+            .trash-icon:hover {
+                cursor: pointer;
             }
         }
     }
+}
+
+footer {
+    height: 4rem;
 }

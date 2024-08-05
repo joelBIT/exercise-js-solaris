@@ -1,10 +1,15 @@
 'use strict';
 
 const cards = document.querySelector('.cards');
+const backArrow = document.querySelector('.long-arrow-left');
 
 window.onload = () => {
     getAPIKey();
 }
+
+backArrow.addEventListener('click', () => {
+    console.log('Navigate back to main page');
+});
 
 async function getAPIKey() {
     try {
@@ -48,17 +53,56 @@ function displayFavourites() {
 function createPlanetCard(planet) {
     let card = document.createElement('article');
     card.classList.add('card');
+    card.classList.add(planet.name);
 
     let name = document.createElement("h1");
     name.appendChild(document.createTextNode(planet.name));
     card.appendChild(name);
+
+    let planetFigure = document.createElement('figure');
+    let planetImage = document.createElement('img');
+    console.log(planet.name);
+    planetImage.setAttribute('src', `/assets/${planet.name}.jpg`);
+    planetImage.setAttribute('alt', `${planet.name}`);
+    planetFigure.appendChild(planetImage);
+    card.append(planetFigure);
+
+    let div = document.createElement("div");
+    div.classList.add('trash');
     let latinName = document.createElement("h2");
     latinName.appendChild(document.createTextNode(planet.latinName));
-    card.appendChild(latinName);
+    div.appendChild(latinName);
+
+    let figure = document.createElement('figure');
+    figure.classList.add('trash-icon');
+    figure.addEventListener('click', () => {
+        removeFavourite(planet.name);
+    });
+
+    let image = document.createElement('img');
+    image.setAttribute('src', '/assets/trash.svg');
+    image.setAttribute('alt', 'Remove Favourite');
+    figure.appendChild(image);
+    div.appendChild(figure);
+    card.append(div);
 
     cards.appendChild(card);
 }
 
-function removeFavourite() {
+function removeFavourite(name) {
+    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    let index = -1;
+    for (let i = 0; i < favourites.length; i++) {
+        if (favourites[i].name === name) {
+            index = i;
+        }
+    }
 
+    if (index > -1) {
+        favourites.splice(index, 1);
+        let card = document.querySelector('.' + name);
+        cards.removeChild(card);
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+        console.log(JSON.parse(localStorage.getItem('favourites')));
+    }
 }
