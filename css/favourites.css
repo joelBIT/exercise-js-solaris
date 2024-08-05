@@ -4,6 +4,10 @@ body {
     display: grid;
 }
 
+header {
+    text-align: center;
+}
+
 main {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -22,9 +26,31 @@ main {
             justify-content: space-between;
             margin: 0;
 
-            h3 {
+            h1 {
                 align-self: center;
-                margin: 1rem;
+            }
+
+            .trash {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-left: 1rem;
+            }
+
+            .trash-icon {
+                display: block;
+                grid-column-start: 4;
+                justify-self: flex-end;
+                margin-right: 1rem;
+
+                img {
+                    width: fit-content;
+                    padding: 0;
+                }
+            }
+
+            .trash-icon:hover {
+                cursor: pointer;
             }
         }
     }
