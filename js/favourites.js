@@ -2,20 +2,11 @@
 
 const cards = document.querySelector('.cards');
 
-window.onload = () => {
-    displayFavourites();  // Used later when the application is more finished
-}
-
 /**
- * Used for testing purposes. Each planet in the API is added to the 'favourites' array. Later, a planet
- * is added to the 'favourites' array by clicking on a button in the singlePlanet page.
+ * When the page is loaded the cards of favourite planets are displayed.
  */
-function addPlanetsToFavourites(planets) {
-    const favourites = [];
-        for (let i = 0; i < planets.length; i++) {
-            favourites.push(planets[i]);
-        }
-        localStorage.setItem('favourites', JSON.stringify(favourites));
+window.onload = () => {
+    displayFavourites();
 }
 
 /**
