@@ -33,9 +33,7 @@ async function getAPIKey() {
     );
 
     const planets = await resp.json();
-    let id = 3;
     localStorage.setItem("bodies", JSON.stringify(planets.bodies));
-    localStorage.setItem("activePlanetId", JSON.stringify(id));
     displayPlanet();
   } catch (error) {
     console.log(error);
@@ -126,12 +124,17 @@ function displayPlanet() {
 }
 
 function updateButtonText() {
+  console.log("1");
+  let planet = getActivePlanet();
+  console.log(isFavourite(planet));
   if (isFavourite(getActivePlanet())) {
     document.querySelector(".planet-favourite_button").textContent =
       "REMOVE FROM FAVOURITES";
+    console.log("good");
   } else {
     document.querySelector(".planet-favourite_button").textContent =
       "ADD TO FAVOURITES";
+    console.log("bad");
   }
 }
 
@@ -149,25 +152,25 @@ function favouriteButtonClick() {
 
 function isFavourite(planet) {
   let favourites = JSON.parse(localStorage.getItem("favourites"));
-
+  let exists = false;
   if (favourites) {
-    if (favourites.length > 1) {
-      favourites.forEach((favourite) => {
-        if (favourite.id == planet.id) {
-          return true;
-        }
-      });
-    } else if (favourites.id == planet.id) {
-      return true;
-    }
-  } else {
-    return false;
+    console.log("2");
+    favourites = Array.isArray(favourites) ? favourites : [favourites];
+    console.log("3");
+    favourites.forEach((favourite) => {
+      if (favourite.id === planet.id) {
+        console.log("4");
+        exists = true;
+      }
+    });
   }
+  return exists;
 }
 
 function addPlanetToFavourites(planet) {
   let favourites = JSON.parse(localStorage.getItem("favourites"));
   if (favourites) {
+    favourites = Array.isArray(favourites) ? favourites : [favourites];
     favourites.push(planet);
   } else {
     favourites = planet;
@@ -175,16 +178,17 @@ function addPlanetToFavourites(planet) {
   localStorage.setItem("favourites", JSON.stringify(favourites));
 }
 
-function removeFavourite(name) {
+function removeFavourite(planet) {
   let favourites = JSON.parse(localStorage.getItem("favourites"));
   let index = -1;
   if (favourites.length) {
     for (let i = 0; i < favourites.length; i++) {
-      if (favourites[i].name == name) {
+      if (favourites[i].id == planet.id) {
         index = i;
       }
     }
     favourites.splice(index, 1);
+    console.log("removed at index " + index);
     localStorage.setItem("favourites", JSON.stringify(favourites));
   } else {
     localStorage.removeItem("favourites");
