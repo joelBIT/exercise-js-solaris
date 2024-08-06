@@ -2,49 +2,11 @@
 
 const cards = document.querySelector('.cards');
 
+/**
+ * When the page is loaded the cards of favourite planets are displayed.
+ */
 window.onload = () => {
-    //getAPIKey();            // Only used in testing
-    displayFavourites();  // Used later when the application is more finished
-}
-
-/**
- * Here for testing purposes only. The API is called on the start page, if no planets exist in the local storage,
- * and adds each planet to the local storage.
- */
-async function getAPIKey() {
-    try {
-        let keyResponse = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', {
-            method: 'POST'
-        });
-    
-        const key = await keyResponse.json();
-        
-        let resp = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies', {
-            method: 'GET',
-            headers: {'x-zocom': key.key}
-        })
-
-        const planets = await resp.json();
-        addPlanetsToFavourites(planets.bodies);
-        displayFavourites();
-
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-/**
- * Used for testing purposes. Each planet in the API is added to the 'favourites' array. Later, a planet
- * is added to the 'favourites' array by clicking on a button in the singlePlanet page.
- */
-function addPlanetsToFavourites(planets) {
-    const favourites = [];
-        for (let i = 0; i < planets.length; i++) {
-            if (planets[i].type === 'planet') {
-                favourites.push(planets[i]);
-            }
-        }
-        localStorage.setItem('favourites', JSON.stringify(favourites));
+    displayFavourites();
 }
 
 /**
@@ -52,7 +14,7 @@ function addPlanetsToFavourites(planets) {
  * and renders each planet as a card on the Favourites page.
  */
 function displayFavourites() {
-    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    const favourites = JSON.parse(localStorage.getItem('favourites'));
     for (let i = 0; i < favourites.length; i++) {
         createPlanetCard(favourites[i]);
     }
@@ -60,15 +22,30 @@ function displayFavourites() {
 
 /**
  * Creates a card on the Favourites page for the given planet. 
+ *
+ * @param {*} planet the planet that the card is created for
  */
 function createPlanetCard(planet) {
     let card = document.createElement('article');
     card.classList.add('card');
     card.classList.add(planet.name);
-    let navigatediv = document.createElement("div");
-    navigatediv.classList.add('navigate');
+    card.appendChild(createNavigation(planet));
+    card.appendChild(createLatinNameArea(planet));
 
-    navigatediv.addEventListener('click', (event) => {
+    cards.appendChild(card);
+}
+
+/**
+ * Creates a navigation element for a planet card. Clicking on this element
+ * navigates from the favourite page to the clicked planets single page.
+ * 
+ * @param {*} planet that the navigation is created for.
+ */
+function createNavigation(planet) {
+    let navigateDIV = document.createElement("div");
+    navigateDIV.classList.add('navigate');
+
+    navigateDIV.addEventListener('click', (event) => {
         event.stopPropagation();
         localStorage.setItem('activePlanetId', planet.id);
         window.location.assign("/singlePlanet.html");
@@ -76,38 +53,65 @@ function createPlanetCard(planet) {
 
     let name = document.createElement("h1");
     name.appendChild(document.createTextNode(planet.name));
-    navigatediv.appendChild(name);
+    navigateDIV.appendChild(name);
+    navigateDIV.append(createPlanetImage(planet.name));
 
+    return navigateDIV;
+}
+
+/**
+ * Creates a figure element containing an image of a planet.
+ * 
+ * @param {*} name is the name of the planet whose image element is to be created
+ * @returns the created planet figure
+ */
+function createPlanetImage(name) {
     let planetFigure = document.createElement('figure');
     let planetImage = document.createElement('img');
-    planetImage.setAttribute('src', `/assets/${planet.name}.jpg`);
-    planetImage.setAttribute('alt', `${planet.name}`);
+    planetImage.setAttribute('src', `/assets/${name}.jpg`);
+    planetImage.setAttribute('alt', `${name}`);
     planetFigure.appendChild(planetImage);
-    navigatediv.append(planetFigure);
 
-    card.appendChild(navigatediv);
+    return planetFigure;
+}
 
+/**
+ * Creates an element containing the latin name of a planet, plus a trash icon.
+ * 
+ * @param {*} planet whose latin name is used
+ * @returns the element containing the latin name as well as a trash icon
+ */
+function createLatinNameArea(planet) {
     let div = document.createElement("div");
-    div.classList.add('trash');
+    div.classList.add('latin');
     let latinName = document.createElement("h2");
     latinName.appendChild(document.createTextNode(planet.latinName));
     div.appendChild(latinName);
+    div.appendChild(createTrashIcon(planet.name));
 
+    return div;
+}
+
+/**
+ * Creates a trash icon for a planet card. The trash icon is used to remove
+ * a planet from favourites.
+ * 
+ * @returns the created figure containing the trash icon image.
+ */
+function createTrashIcon(name) {
     let figure = document.createElement('figure');
     figure.classList.add('trash-icon');
     figure.addEventListener('click', (event) => {
         event.stopPropagation();
-        removeFavourite(planet.name);
+        removeFavourite(name);
     });
 
     let image = document.createElement('img');
     image.setAttribute('src', '/assets/trash.svg');
     image.setAttribute('alt', 'Remove Favourite');
     figure.appendChild(image);
-    div.appendChild(figure);
-    card.append(div);
 
-    cards.appendChild(card);
+    return figure;
 }
 
 /**
@@ -116,7 +120,7 @@ function createPlanetCard(planet) {
  * corresponding planet from the favourites array.
  */
 function removeFavourite(name) {
-    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    const favourites = JSON.parse(localStorage.getItem('favourites'));
     let index = -1;
     for (let i = 0; i < favourites.length; i++) {
         if (favourites[i].name === name) {
@@ -126,7 +130,7 @@ function removeFavourite(name) {
 
     if (index > -1) {
         favourites.splice(index, 1);
-        let card = document.querySelector('.' + name);
+        const card = document.querySelector('.' + name);
         cards.removeChild(card);
         localStorage.setItem('favourites', JSON.stringify(favourites));
     }

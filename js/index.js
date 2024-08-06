@@ -13,7 +13,7 @@ async function getAPIKey() {
       headers: { "x-zocom": key.key },
     });
 
-    // Parse the planet data response as JSON
+   
     const planets = await resp.json();
 
     // Update the planet names in the HTML
@@ -29,9 +29,12 @@ function updatePlanetNames(bodies) {
 
   // Iterate through each planet data from the API response
   bodies.forEach((body, index) => {
-    // If there is a corresponding planet element, update its data-name attribute
     if (planetElements[index]) {
       planetElements[index].setAttribute("data-name", body.name);
+      planetElements[index].addEventListener('click', () => {
+        localStorage.setItem('activePlanetId', body.id);
+        window.location.assign("/singlePlanet.html");
+    });
     }
   });
 }
@@ -47,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     planet.addEventListener("mouseover", function () {
       const planetName = this.getAttribute("data-name");
 
-      // Check if the planet-name element exists, if not create it
+
       let nameElement = this.querySelector(".planet-name");
 
       if (!nameElement) {
