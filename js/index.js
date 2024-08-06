@@ -32,6 +32,11 @@ function updatePlanetNames(bodies) {
     // If there is a corresponding planet element, update its data-name attribute
     if (planetElements[index]) {
       planetElements[index].setAttribute("data-name", body.name);
+      planetElements[index].addEventListener('click', () => {
+        console.log(body.id);
+        localStorage.setItem('activePlanetId', body.id);
+        window.location.assign("/singlePlanet.html");
+    });
     }
   });
 }
