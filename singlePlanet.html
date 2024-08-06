@@ -8,40 +8,56 @@
   </head>
 
   <body>
-    <aside class="planet-image">
-      <div class="planet-image_1"></div>
-      <div class="planet-image_2"></div>
-      <div class="planet-image_3"></div>
+    <aside class="planet-images">
+      <div class="planet-image planet-image_outer"></div>
+      <div class="planet-image planet-image_middle"></div>
+      <div class="planet-image planet-image_inner"></div>
     </aside>
+
     <div class="planet-container">
       <header>
         <h1 class="planet_name">planet_name</h1>
         <h3 class="planet_latinName">planet_latinName</h3>
         <figure class="planet-home">
           <img class="planet-home_button" src="assets/arrow-left.svg" alt="" />
+          <p class="planet-home_hover-text">HOME</p>
         </figure>
       </header>
 
       <main>
-        <article class="planet">
-          <p class="planet_text">planet_text</p>
-          <hr />
+        <article class="planet-content">
+          <div class="planet_text-container">
+            <p class="planet_text">planet_text</p>
+          </div>
+          <div class="line"></div>
           <section class="planet-info">
-            <div class="left">
+            <div class="planet-info-container">
               <h5>OMKRETS</h5>
-              <p class="planet-info_omkrets">planet-info_omkrets</p>
-              <h5>MAX TEMPERATUR</h5>
-              <p class="planet-info_maxTemp">planet-info_maxTemp</p>
+              <p class="planet-info_omkrets planet-info_data">
+                planet-info_omkrets
+              </p>
             </div>
-            <div class="right">
+            <div class="planet-info-container">
               <h5>KM FRÅN SOLEN</h5>
-              <p class="planet-info_distans">planet-info_distans</p>
+              <p class="planet-info_distans planet-info_data">
+                planet-info_distans
+              </p>
+            </div>
+            <div class="planet-info-container">
+              <h5>MAX TEMPERATUR</h5>
+              <p class="planet-info_maxTemp planet-info_data">
+                planet-info_maxTemp
+              </p>
+            </div>
+            <div class="planet-info-container">
               <h5>MIN TEMPERATUR</h5>
-              <p class="planet-info_minTemp">planet-info_maxTemp</p>
+              <p class="planet-info_minTemp planet-info_data">
+                planet-info_maxTemp
+              </p>
             </div>
           </section>
-          <hr />
-          <p>MÅNAR</p>
+          <div class="line"></div>
+          <h5>MÅNAR</h5>
           <ul class="planet-moons"></ul>
         </article>
         <div class="planet-favourite">
