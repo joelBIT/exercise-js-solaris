@@ -50,10 +50,6 @@ a {
   text-decoration: none;
 }
 
-ul {
-  padding: 0;
-}
-
 li {
   font-size: 1.5rem;
   color: white;
@@ -144,6 +140,9 @@ body {
     }
     .planet-moons {
       margin: 0.5em 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
   }
 
