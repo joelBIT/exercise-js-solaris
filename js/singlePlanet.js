@@ -125,9 +125,6 @@ function displayPlanet() {
     figure2.style.backgroundColor = color + "1a";
     let figure1 = document.querySelector(".planet-image_outer");
     figure1.style.backgroundColor = color + "0f";
-
-    let button = document.querySelector(".planet-favourite_button");
-    button.style.backgroundColor = color;
   } catch (error) {
     console.log(error);
   }
