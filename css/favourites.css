@@ -48,6 +48,7 @@ header {
 main {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    font-family: 'Lora';
 
     .cards {
         display: grid;
@@ -90,15 +91,9 @@ main {
             }
 
             .trash-icon {
-                display: block;
                 grid-column-start: 4;
-                justify-self: flex-end;
                 margin-right: 1rem;
-
-                img {
-                    width: fit-content;
-                    padding: 0;
-                }
+                transform: scale(1.5);
             }
 
             .trash-icon:hover {
