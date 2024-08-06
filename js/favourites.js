@@ -13,9 +13,7 @@ window.onload = () => {
 function addPlanetsToFavourites(planets) {
     const favourites = [];
         for (let i = 0; i < planets.length; i++) {
-            if (planets[i].type === 'planet') {
-                favourites.push(planets[i]);
-            }
+            favourites.push(planets[i]);
         }
         localStorage.setItem('favourites', JSON.stringify(favourites));
 }
