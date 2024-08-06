@@ -6,7 +6,17 @@ const cards = document.querySelector('.cards');
  * When the page is loaded the cards of favourite planets are displayed.
  */
 window.onload = () => {
+    createLogoNavigation();
     displayFavourites();
+}
+
+/**
+ * When the logo text is clicked, the user navigates to the start page.
+ */
+function createLogoNavigation() {
+    document.querySelector('.logo').addEventListener('click', () => {
+        window.location.assign("/index.html");
+    });
 }
 
 /**
