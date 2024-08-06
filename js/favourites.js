@@ -3,34 +3,7 @@
 const cards = document.querySelector('.cards');
 
 window.onload = () => {
-    //getAPIKey();            // Only used in testing
     displayFavourites();  // Used later when the application is more finished
-}
-
-/**
- * Here for testing purposes only. The API is called on the start page, if no planets exist in the local storage,
- * and adds each planet to the local storage.
- */
-async function getAPIKey() {
-    try {
-        let keyResponse = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys', {
-            method: 'POST'
-        });
-    
-        const key = await keyResponse.json();
-        
-        let resp = await fetch('https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies', {
-            method: 'GET',
-            headers: {'x-zocom': key.key}
-        })
-
-        const planets = await resp.json();
-        addPlanetsToFavourites(planets.bodies);
-        displayFavourites();
-
-    } catch (error) {
-        console.log(error);
-    }
 }
 
 /**
