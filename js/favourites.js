@@ -1,7 +1,5 @@
 'use strict';
 
-const cards = document.querySelector('.cards');
-
 /**
  * When the page is loaded the cards of favourite planets are displayed.
  * 
@@ -44,6 +42,7 @@ function displayFavourites() {
  * Joel
  */
 function createPlanetCard(planet) {
+    const cards = document.querySelector('.cards');
     let card = document.createElement('article');
     card.classList.add('card');
     card.classList.add(planet.name);
@@ -150,6 +149,7 @@ function removeFavourite(name) {
     let favourites = JSON.parse(localStorage.getItem('favourites'));
     favourites = favourites.filter(planet => planet.name !== name);
     localStorage.setItem('favourites', JSON.stringify(favourites));
+    const cards = document.querySelector('.cards');
     const card = document.querySelector('.' + name);
     cards.removeChild(card);
 }
