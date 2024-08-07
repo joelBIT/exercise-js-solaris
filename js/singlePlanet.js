@@ -1,6 +1,17 @@
 "use strict";
+
 window.onload = () => {
   getBodies();
+  setupListeners();
+  displayPlanet();
+};
+
+/**
+ * Adds the event listeners to navigation buttons
+ *
+ * Hektor
+ */
+function setupListeners() {
   document
     .querySelector(".planet-home_button")
     .addEventListener("click", () => {
@@ -11,10 +22,13 @@ window.onload = () => {
     .addEventListener("click", () => {
       favouriteButtonClick();
     });
-  displayPlanet();
-};
+}
 
-// Gets the bodies from the api and stores them in localestorage
+/**
+ * Gets all the planet bodies from the api and stores them in localestorage in "bodies"
+ *
+ * Hektor
+ */
 async function getBodies() {
   try {
     let keyResponse = await fetch(
@@ -40,7 +54,13 @@ async function getBodies() {
   }
 }
 
-// Returns the currently active planet using the active ID stored in localstorage
+/**
+ * Gets the active planet from localstorage using the activePlanetId
+ *
+ * @returns the active `planet`
+ *
+ * Hektor
+ */
 function getActivePlanet() {
   try {
     let activeId = JSON.parse(localStorage.getItem("activePlanetId"));
@@ -56,7 +76,11 @@ function getActivePlanet() {
   }
 }
 
-// Updates the elements content and style to that of the active planet
+/**
+ * Updates the elements content and style to that of the active planet
+ *
+ * Hektor
+ */
 function displayPlanet() {
   let activePlanet = getActivePlanet();
   try {
@@ -131,7 +155,11 @@ function displayPlanet() {
   updateButtonText();
 }
 
-// Updates the text of the button depending on if the active planet is a favourite or not
+/**
+ * Updates the text of the button depending on if the active planet is a favourite or not
+ *
+ * Hektor
+ */
 function updateButtonText() {
   try {
     if (isFavourite(getActivePlanet())) {
@@ -146,7 +174,11 @@ function updateButtonText() {
   }
 }
 
-// Calls the remove or add favourute function depending on status of active planet
+/**
+ * Calls the remove or add favourute function depending on status of active planet
+ *
+ * Hektor
+ */
 function favouriteButtonClick() {
   let planet = getActivePlanet();
   try {
@@ -163,7 +195,14 @@ function favouriteButtonClick() {
   updateButtonText();
 }
 
-// Returns true if the given planet is a favourite
+/**
+ * Checks if the planet is in favourites in localstorage
+ *
+ * @param {*} planet the planet object to check
+ * @returns {boolean}  `true` if the planet is in the favourites list, `false` otherwise.
+ *
+ * Hektor
+ */
 function isFavourite(planet) {
   let favourites = getFavourites();
   let exists = false;
@@ -182,7 +221,13 @@ function isFavourite(planet) {
   }
 }
 
-// Returns the favourite planets
+/**
+ * Gets the favourites from localstorage
+ *
+ * @returns {Array}  An array of the favourite planets
+ *
+ * Hektor
+ */
 function getFavourites() {
   try {
     let favourites = JSON.parse(localStorage.getItem("favourites"));
@@ -192,7 +237,13 @@ function getFavourites() {
   }
 }
 
-// Adds the input planet to favourites in localstorage
+/**
+ * Adds the planet to favourites in localstorage
+ *
+ * @param {*} planet the planet object to add
+ *
+ * Hektor
+ */
 function addPlanetToFavourites(planet) {
   let favourites = getFavourites();
   try {
@@ -208,7 +259,13 @@ function addPlanetToFavourites(planet) {
   }
 }
 
-// Removes the input planet to favourites from localstorage
+/**
+ * Removes the planet from favourites in localstorage
+ *
+ * @param {*} planet the planet object to remove
+ *
+ * Hektor
+ */
 function removeFavourite(planet) {
   let favourites = getFavourites();
   let index = -1;
