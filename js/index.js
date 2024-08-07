@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
   planets.forEach((planet) => {
     planet.addEventListener("mouseover", function () {
       const planetName = this.getAttribute("data-name");
+      this.style.cursor = "pointer";
 
 
       let nameElement = this.querySelector(".planet-name");
