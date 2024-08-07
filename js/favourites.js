@@ -1,27 +1,19 @@
 'use strict';
 
-const cards = document.querySelector('.cards');
-
 /**
  * When the page is loaded the cards of favourite planets are displayed.
+ * 
+ * Joel
  */
 window.onload = () => {
-    createLogoNavigation();
     displayFavourites();
-}
-
-/**
- * When the logo text is clicked, the user navigates to the start page.
- */
-function createLogoNavigation() {
-    document.querySelector('.logo').addEventListener('click', () => {
-        window.location.assign("/index.html");
-    });
 }
 
 /**
  * Retrieves all the planets from the 'favourites' array in local storage
  * and renders each planet as a card on the Favourites page.
+ * 
+ * Joel
  */
 function displayFavourites() {
     const favourites = JSON.parse(localStorage.getItem('favourites'));
@@ -34,8 +26,11 @@ function displayFavourites() {
  * Creates a card on the Favourites page for the given planet. 
  *
  * @param {*} planet the planet that the card is created for
+ * 
+ * Joel
  */
 function createPlanetCard(planet) {
+    const cards = document.querySelector('.cards');
     let card = document.createElement('article');
     card.classList.add('card');
     card.classList.add(planet.name);
@@ -50,6 +45,8 @@ function createPlanetCard(planet) {
  * navigates from the favourite page to the clicked planets single page.
  * 
  * @param {*} planet that the navigation is created for.
+ * 
+ * Joel
  */
 function createNavigation(planet) {
     let navigateDIV = document.createElement("div");
@@ -74,6 +71,8 @@ function createNavigation(planet) {
  * 
  * @param {*} name is the name of the planet whose image element is to be created
  * @returns the created planet figure
+ * 
+ * Joel
  */
 function createPlanetImage(name) {
     let planetFigure = document.createElement('figure');
@@ -90,10 +89,12 @@ function createPlanetImage(name) {
  * 
  * @param {*} planet whose latin name is used
  * @returns the element containing the latin name as well as a trash icon
+ * 
+ * Joel
  */
 function createLatinNameArea(planet) {
     let div = document.createElement("div");
-    div.classList.add('latin');
+    div.classList.add('latin-name');
     let latinName = document.createElement("h2");
     latinName.appendChild(document.createTextNode(planet.latinName));
     div.appendChild(latinName);
@@ -107,6 +108,8 @@ function createLatinNameArea(planet) {
  * a planet from favourites.
  * 
  * @returns the created figure containing the trash icon image.
+ * 
+ * Joel
  */
 function createTrashIcon(name) {
     let figure = document.createElement('figure');
@@ -125,23 +128,16 @@ function createTrashIcon(name) {
 }
 
 /**
- * Removes the selected favourite planet from the array of favourite planets.
- * The index of the planet is retrieved and then that index is used to remove the
- * corresponding planet from the favourites array.
+ * Removes the selected planet from the array of favourite planets.
+ * The planet's card is also removed from the favourites page.
+ * 
+ * Joel
  */
 function removeFavourite(name) {
-    const favourites = JSON.parse(localStorage.getItem('favourites'));
-    let index = -1;
-    for (let i = 0; i < favourites.length; i++) {
-        if (favourites[i].name === name) {
-            index = i;
-        }
-    }
-
-    if (index > -1) {
-        favourites.splice(index, 1);
-        const card = document.querySelector('.' + name);
-        cards.removeChild(card);
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-    }
+    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    favourites = favourites.filter(planet => planet.name !== name);
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+    const cards = document.querySelector('.cards');
+    const card = document.querySelector('.' + name);
+    cards.removeChild(card);
 }
