@@ -93,7 +93,7 @@ function createPlanetImage(name) {
  */
 function createLatinNameArea(planet) {
     let div = document.createElement("div");
-    div.classList.add('latin');
+    div.classList.add('latin-name');
     let latinName = document.createElement("h2");
     latinName.appendChild(document.createTextNode(planet.latinName));
     div.appendChild(latinName);

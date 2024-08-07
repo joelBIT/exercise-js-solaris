@@ -13,6 +13,10 @@ body {
     display: grid;
 }
 
+/**********
+* HEADING *
+**********/
+
 header {
     display: flex;
     flex-direction: column;
@@ -45,6 +49,10 @@ header {
     }
 }
 
+/********
+* CARDS *
+********/
+
 main {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -72,10 +80,6 @@ main {
 
             figure {
                 margin: 0;
-                grid-column: span 4;
-                background-size: cover;
-                background-position: center;
-                text-align: center;
 
                 img {
                     width: 100%;
@@ -83,7 +87,7 @@ main {
                 }
             }
 
-            .latin {
+            .latin-name {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
@@ -91,7 +95,6 @@ main {
             }
 
             .trash-icon {
-                grid-column-start: 4;
                 margin-right: 1rem;
                 transform: scale(1.5);
             }
@@ -115,9 +118,9 @@ footer {
 @media (min-width: 1300px) {
     main {
         .cards {
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             .card {
-                grid-column: span 2;
+                grid-column: span 1;
             }
         }
     }
