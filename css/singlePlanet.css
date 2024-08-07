@@ -154,6 +154,7 @@ body {
     align-items: center;
     row-gap: 2em;
     margin-top: 2em;
+
     .planet-favourite_button {
       background-color: #428ed4;
       padding: 0.5em 1em;
