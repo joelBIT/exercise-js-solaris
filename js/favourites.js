@@ -16,7 +16,7 @@ window.onload = () => {
  * Joel
  */
 function createButtonNavigation() {
-    document.querySelector('.start-page-button').addEventListener('click', () => {
+    document.querySelector('.start-page-link').addEventListener('click', () => {
         window.location.assign("/index.html");
     });
 }
