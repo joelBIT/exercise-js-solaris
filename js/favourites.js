@@ -141,25 +141,15 @@ function createTrashIcon(name) {
 }
 
 /**
- * Removes the selected favourite planet from the array of favourite planets.
- * The index of the planet is retrieved and then that index is used to remove the
- * corresponding planet from the favourites array.
+ * Removes the selected planet from the array of favourite planets.
+ * The planet's card is also removed from the favourites page.
  * 
  * Joel
  */
 function removeFavourite(name) {
-    const favourites = JSON.parse(localStorage.getItem('favourites'));
-    let index = -1;
-    for (let i = 0; i < favourites.length; i++) {
-        if (favourites[i].name === name) {
-            index = i;
-        }
-    }
-
-    if (index > -1) {
-        favourites.splice(index, 1);
-        const card = document.querySelector('.' + name);
-        cards.removeChild(card);
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-    }
+    let favourites = JSON.parse(localStorage.getItem('favourites'));
+    favourites = favourites.filter(planet => planet.name !== name);
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+    const card = document.querySelector('.' + name);
+    cards.removeChild(card);
 }
