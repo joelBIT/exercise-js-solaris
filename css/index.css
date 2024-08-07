@@ -132,6 +132,31 @@ aside {
   display: none;
 }
 
+.planet-images {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 50%;
+  transform: translateX(-100%);
+  .planet-image {
+    position: absolute;
+    top: 50%;
+    height: 150%;
+    width: 150%;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+  .planet-image_outer {
+    left: -70%;
+  }
+  .planet-image_middle {
+    left: -80%;
+  }
+  .planet-image_inner {
+    left: -90%;
+  }
+}
+
 .sun:hover .planet-name,
 .planet1:hover .planet-name,
 .planet2:hover .planet-name,
