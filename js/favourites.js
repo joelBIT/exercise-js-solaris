@@ -6,19 +6,7 @@
  * Joel
  */
 window.onload = () => {
-    createButtonNavigation();
     displayFavourites();
-}
-
-/**
- * When the button is clicked, the user navigates to the start page.
- * 
- * Joel
- */
-function createButtonNavigation() {
-    document.querySelector('.start-page-link').addEventListener('click', () => {
-        window.location.assign("/index.html");
-    });
 }
 
 /**
