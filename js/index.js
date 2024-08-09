@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  if (localStorage.getItem('bodies')) {
+    updatePlanetNames(JSON.parse(localStorage.getItem('bodies')));
+    addListeners();
+    return;
+  }
+
   getAPIKey();
 
   // Function to fetch API key and planet data
@@ -42,9 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+  addListeners();
+});
 
 
-  // Add mouseover and mouseout event listeners to each planet
+function addListeners() {
+    // Add mouseover and mouseout event listeners to each planet
   // Nino
   const planets = document.querySelectorAll("nav section");
   planets.forEach((planet) => {
@@ -74,4 +84,4 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
+}
