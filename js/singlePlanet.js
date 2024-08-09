@@ -220,7 +220,7 @@ function addPlanetToFavourites(planet) {
       favourites = Array.isArray(favourites) ? favourites : [favourites];
       favourites.push(planet);
     } else {
-      favourites = []
+      favourites = [];
       favourites.push(planet);
     }
     localStorage.setItem("favourites", JSON.stringify(favourites));
