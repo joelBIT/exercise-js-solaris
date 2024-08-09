@@ -52,75 +52,72 @@ function getActivePlanet() {
  */
 function displayPlanet() {
   let activePlanet = getActivePlanet();
-  try {
-    document.querySelector(".planet_name").textContent =
-      activePlanet.name.toUpperCase();
-    document.querySelector(".planet_latinName").textContent =
-      activePlanet.latinName.toUpperCase();
-    document.querySelector(".planet_text").textContent = activePlanet.desc;
-    document.querySelector(".planet-info_omkrets").textContent =
-      activePlanet.circumference + " km";
-    document.querySelector(".planet-info_maxTemp").textContent =
-      activePlanet.temp.day + "C";
-    document.querySelector(".planet-info_distans").textContent =
-      activePlanet.distance + " km";
-    document.querySelector(".planet-info_minTemp").textContent =
-      activePlanet.temp.night + "C";
-    const planetMoonsRef = document.querySelector(".planet-moons");
-    activePlanet.moons.forEach((moon) => {
-      let m = document.createElement("li");
-      m.textContent = moon;
-      planetMoonsRef.appendChild(m);
-    });
+  document.querySelector(".planet_name").textContent =
+    activePlanet.name.toUpperCase();
+  document.querySelector(".planet_latinName").textContent =
+    activePlanet.latinName.toUpperCase();
+  document.querySelector(".planet_text").textContent = activePlanet.desc;
+  document.querySelector(".planet-info_omkrets").textContent =
+    activePlanet.circumference + " km";
+  document.querySelector(".planet-info_maxTemp").textContent =
+    activePlanet.temp.day + "C";
+  document.querySelector(".planet-info_distans").textContent =
+    activePlanet.distance + " km";
+  document.querySelector(".planet-info_minTemp").textContent =
+    activePlanet.temp.night + "C";
+  const planetMoonsRef = document.querySelector(".planet-moons");
+  activePlanet.moons.forEach((moon) => {
+    let m = document.createElement("li");
+    m.textContent = moon;
+    planetMoonsRef.appendChild(m);
+  });
 
-    let color;
-    switch (activePlanet.id) {
-      case 0: {
-        color = "#FFD029";
-        break;
-      }
-      case 1: {
-        color = "#888888";
-        break;
-      }
-      case 2: {
-        color = "#E7CDCD";
-        break;
-      }
-      case 3: {
-        color = "#428ED4";
-        break;
-      }
-      case 4: {
-        color = "#EF5F5F";
-        break;
-      }
-      case 5: {
-        color = "#E29468";
-        break;
-      }
-      case 6: {
-        color = "#C7AA72";
-        break;
-      }
-      case 7: {
-        color = "#C9D4F1";
-        break;
-      }
-      case 8: {
-        color = "#7A91A7";
-        break;
-      }
+  let color;
+  switch (activePlanet.id) {
+    case 0: {
+      color = "#FFD029";
+      break;
     }
-    let figure3 = document.querySelector(".planet-image_inner");
-    figure3.style.backgroundColor = color;
-    let figure2 = document.querySelector(".planet-image_middle");
-    figure2.style.backgroundColor = color + "1a";
-    let figure1 = document.querySelector(".planet-image_outer");
-    figure1.style.backgroundColor = color + "0f";
-  } catch (error) {
-    console.log(error);
+    case 1: {
+      color = "#888888";
+      break;
+    }
+    case 2: {
+      color = "#E7CDCD";
+      break;
+    }
+    case 3: {
+      color = "#428ED4";
+      break;
+    }
+    case 4: {
+      color = "#EF5F5F";
+      break;
+    }
+    case 5: {
+      color = "#E29468";
+      break;
+    }
+    case 6: {
+      color = "#C7AA72";
+      break;
+    }
+    case 7: {
+      color = "#C9D4F1";
+      break;
+    }
+    case 8: {
+      color = "#7A91A7";
+      break;
+    }
   }
+  let figure3 = document.querySelector(".planet-image_inner");
+  figure3.style.backgroundColor = color;
+  let figure2 = document.querySelector(".planet-image_middle");
+  figure2.style.backgroundColor = color + "1a";
+  let figure1 = document.querySelector(".planet-image_outer");
+  figure1.style.backgroundColor = color + "0f";
+
   updateButtonText();
 }
 
@@ -130,16 +127,12 @@ function displayPlanet() {
  * Hektor
  */
 function updateButtonText() {
-  try {
-    if (isFavourite(getActivePlanet())) {
-      document.querySelector(".planet-favourite_button").textContent =
-        "REMOVE FROM FAVOURITES";
-    } else {
-      document.querySelector(".planet-favourite_button").textContent =
-        "ADD TO FAVOURITES";
-    }
-  } catch (error) {
-    console.log(error);
+  if (isFavourite(getActivePlanet())) {
+    document.querySelector(".planet-favourite_button").textContent =
+      "REMOVE FROM FAVOURITES";
+  } else {
+    document.querySelector(".planet-favourite_button").textContent =
+      "ADD TO FAVOURITES";
   }
 }
 
@@ -177,7 +170,6 @@ function isFavourite(planet) {
   let exists = false;
   try {
     if (favourites) {
-      favourites = Array.isArray(favourites) ? favourites : [favourites];
       favourites.forEach((favourite) => {
         if (favourite.id === planet.id) {
           exists = true;
@@ -215,18 +207,13 @@ function getFavourites() {
  */
 function addPlanetToFavourites(planet) {
   let favourites = getFavourites();
-  try {
-    if (favourites) {
-      favourites = Array.isArray(favourites) ? favourites : [favourites];
-      favourites.push(planet);
-    } else {
-      favourites = [];
-      favourites.push(planet);
-    }
-    localStorage.setItem("favourites", JSON.stringify(favourites));
-  } catch (error) {
-    console.log(error);
+  if (favourites) {
+    favourites.push(planet);
+  } else {
+    favourites = [];
+    favourites.push(planet);
   }
+  localStorage.setItem("favourites", JSON.stringify(favourites));
 }
 
 /**
@@ -239,20 +226,12 @@ function addPlanetToFavourites(planet) {
 function removeFavourite(planet) {
   let favourites = getFavourites();
   let index = -1;
-  try {
-    if (favourites.length) {
-      for (let i = 0; i < favourites.length; i++) {
-        if (favourites[i].id == planet.id) {
-          index = i;
-        }
-      }
-      favourites.splice(index, 1);
-      console.log("removed at index " + index);
-      localStorage.setItem("favourites", JSON.stringify(favourites));
-    } else {
-      localStorage.removeItem("favourites");
+  for (let i = 0; i < favourites.length; i++) {
+    if (favourites[i].id == planet.id) {
+      index = i;
     }
-  } catch (error) {
-    console.log(error);
   }
+  favourites.splice(index, 1);
+  console.log("removed at index " + index);
+  localStorage.setItem("favourites", JSON.stringify(favourites));
 }
