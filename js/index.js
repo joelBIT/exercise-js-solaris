@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const planets = await resp.json();
-
+			localStorage.setItem("bodies", JSON.stringify(planets.bodies));
       // Update the planet names in the HTML
       //Nino
       updatePlanetNames(planets.bodies);
